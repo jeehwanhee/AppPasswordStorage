@@ -1,4 +1,4 @@
-package com.passwardstorage
+package com.passwordstorage
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
