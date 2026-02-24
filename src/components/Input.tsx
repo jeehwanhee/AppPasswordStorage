@@ -6,9 +6,11 @@ interface TextInputProps {
     fontSize?: number,
     placeholder?: string,
     value?: string,
-    onChangeText?: (text:string) => void;
-    inputRef?: React.RefObject<RNTextInput>;
+    onChangeText?: (text:string) => void,
+    inputRef?: React.RefObject<RNTextInput>,
+    height ?: number,
 };
+
 const StyledInput = styled.TextInput.attrs<TextInputProps>(({ theme }) => ({
     placeholderTextColor: theme.textInputPlaceholder,
 }))<TextInputProps>`
@@ -19,11 +21,11 @@ const StyledInput = styled.TextInput.attrs<TextInputProps>(({ theme }) => ({
     font-size: ${({fontSize}) => fontSize}px;
     include-font-padding: false;
     text-align-vertical: top;
-    height: 100px;
+    height: ${({height}) => height}px;
 `;
 
 
-const TextInput = ({stroke=true, fontSize=16, placeholder, value, onChangeText, inputRef}: TextInputProps ) => {
+const TextInput = ({stroke=true, fontSize=16, placeholder, value, onChangeText, inputRef, height=100}: TextInputProps ) => {
     return (
         <StyledInput
             stroke={stroke}
@@ -33,6 +35,7 @@ const TextInput = ({stroke=true, fontSize=16, placeholder, value, onChangeText, 
             onChangeText={onChangeText}
             multiline={true}
             ref={inputRef}
+            height={height}
         />
     );
 };

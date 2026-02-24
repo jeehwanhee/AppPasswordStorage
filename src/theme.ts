@@ -25,7 +25,7 @@ export const theme = {
     buttonBackgroundActivated: colors.blue,
     buttonText: colors.black,
     buttonTextRed: colors.red,
-    buttonTextdeactivated: colors.gray_2,
+    buttonTextdeactivated: colors.gray_3,
     
     textInputStroke: colors.black,
     textInputNonStroke: colors.white,
