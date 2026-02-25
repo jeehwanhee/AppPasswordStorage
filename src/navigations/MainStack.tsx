@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect, useRef } from "react";
 import { ThemeContext } from "styled-components/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Signup, ConfirmPW, Main, SiteMod, Login } from "../screens";
+import { Signup, ConfirmPW, Main, SiteMod, Login, Site } from "../screens";
 import { MainStackParamList } from "./type";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { theme } from '../theme';
@@ -88,6 +88,7 @@ const MainStack = () => {
                     }}/>
                     <Stack.Screen name="Main" component={Main} />
                     <Stack.Screen name="SiteMod" component={SiteMod} />
+                    <Stack.Screen name="Site" component={Site} />
                 </>
             ) : (
                 <>
