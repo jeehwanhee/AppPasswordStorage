@@ -76,7 +76,7 @@ const Login = () => {
                             justifyContent: 'center'
                         }}>
                         <TextInput 
-                            inputRef={inputRef}
+                            ref={inputRef}
                             value={password}
                             onChangeText={(text) => {
                                 const filter = text.replace(/[^A-Za-z0-9@$!%*#?&]/g, '');
@@ -87,9 +87,7 @@ const Login = () => {
                             fontSize={24}
                         />
                     </View>
-                    <View style={{flex:1}}>
-                    </View>
-                    <View style={{flex:1}}/>
+                    <View style={{flex:2}}/>
                     <Button 
                         text='확인'
                         activated={pwConfirm(password)}

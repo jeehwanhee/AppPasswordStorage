@@ -66,7 +66,7 @@ const ConfirmPW = () => {
                             justifyContent: 'center'
                         }}>
                         <TextInput 
-                            inputRef={inputRef}
+                            ref={inputRef}
                             value={password}
                             onChangeText={(text) => {
                                 const filter = text.replace(/[^A-Za-z0-9@$!%*#?&]/g, '');

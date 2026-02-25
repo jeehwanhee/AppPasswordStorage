@@ -40,7 +40,7 @@ const Signup = () => {
                         
                     <Text warning={true} text="추후에 변경할 수 없습니다!!!"/>
                     <TextInput 
-                        inputRef={inputRef}
+                        ref={inputRef}
                         value={password}
                         onChangeText={(text) => {
                             const filter = text.replace(/[^A-Za-z0-9@$!%*#?&]/g, '');

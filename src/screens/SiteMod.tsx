@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRoute } from "@react-navigation/native";
 import { cryptoService } from '../utils/cryptoService';
 import EncryptedStorage from 'react-native-encrypted-storage';
-import { TextInput, Button, Text } from '../components';
+import { TextInput, Button } from '../components';
 import styled from 'styled-components/native';
 import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -16,12 +16,13 @@ const Container = styled.View`
 
 const InputContainer = styled.View`
     flex: 1;
+    margin-top: 48px;
     padding: 32px;
 `;
 
 const ButtonContainer = styled.View`
     flex-direction: row;
-`
+`;
 
 const SiteMod = () => {
     const navigation = useNavigation<any>();
@@ -32,6 +33,10 @@ const SiteMod = () => {
     const [ accountId, setAccountId ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ memo, setMemo ] = useState('');
+
+    const accountIDRef = useRef<any>(null);
+    const passwordRef = useRef<any>(null);
+    const memoRef = useRef<any>(null);
 
     useEffect(() => {
         if(!!item) {
@@ -54,6 +59,13 @@ const SiteMod = () => {
     }, []);
 
     const handleSave = async () => {
+        if (!siteName || !accountId) {
+            Toast.show({
+                type: 'error',
+                text1: '사이트 이름, ID는 필수사항입니다.',
+            });
+            return;
+        }
         try {
             const storedData = await EncryptedStorage.getItem("vault_list");
             let vaultList = storedData ? JSON.parse(storedData) : [];
@@ -86,7 +98,12 @@ const SiteMod = () => {
                 type: 'success',
                 text1: '저장 완료'
             });
-            navigation.goBack();
+
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'Main', params: { masterKey: masterKey} }],
+            });
+
         } catch (e) {
             console.log('저장 실패: ', e);
         }
@@ -102,24 +119,39 @@ const SiteMod = () => {
                     stroke={true}
                     fontSize={16}
                     height={56}
+                    returnKeyType="next"
+                    onSubmitEditing={() => accountIDRef.current?.focus()}
+                    blurOnSubmit={false}
+                    multiline={false}
                 />
                 <TextInput
+                    ref={accountIDRef}
                     value={accountId}
                     onChangeText={setAccountId}
                     placeholder='ID'
                     stroke={true}
                     fontSize={16}
                     height={56}
+                    returnKeyType="next"
+                    onSubmitEditing={() => passwordRef.current?.focus()}
+                    blurOnSubmit={false}
+                    multiline={false}
                 />
                 <TextInput
+                    ref={passwordRef}
                     value={password}
                     onChangeText={setPassword}
                     placeholder='비밀번호'
                     stroke={true}
                     fontSize={16}
                     height={56}
+                    returnKeyType="next"
+                    onSubmitEditing={() => memoRef.current?.focus()}
+                    blurOnSubmit={false}
+                    multiline={false}
                 />
                 <TextInput
+                    ref={memoRef}
                     value={memo}
                     onChangeText={setMemo}
                     placeholder='메모'

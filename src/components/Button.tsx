@@ -18,7 +18,7 @@ interface TextProps {
 const Text = styled.Text<TextProps>`
     font-size: 16px;
     font-family: ${({ theme }) => theme.fonts.bold};
-    color: ${({ theme, activated, type}) => activated ? (type ? theme.buttonText : theme.buttonTextRed) : theme.buttonTextdeactivated};
+    color: ${({ theme, activated, type}) => activated ? (type ? theme.buttonText : theme.buttonTextRed) : (type ? theme.buttonTextdeactivated : theme.buttonTextRed)};
 `;
 
 interface ButtonProps {

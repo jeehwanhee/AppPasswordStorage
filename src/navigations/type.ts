@@ -2,7 +2,7 @@ import { Buffer } from '@craftzdog/react-native-buffer';
 
 export type MainStackParamList = {
   "Login": undefined;
-  "site": undefined;
+  "Site": {masterKey: string, item: {siteId: string, iv: string, payload: string, updatedAt: string, siteName: string}};
   "sideBar": undefined;
 
   "Signup": undefined;

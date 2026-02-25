@@ -7,8 +7,12 @@ interface TextInputProps {
     placeholder?: string,
     value?: string,
     onChangeText?: (text:string) => void,
-    inputRef?: React.RefObject<RNTextInput>,
+    ref?: React.RefObject<RNTextInput>,
     height ?: number,
+    returnKeyType ?: string,
+    onSubmitEditing?: () => void,
+    blurOnSubmit?: boolean,
+    multiline?: boolean,
 };
 
 const StyledInput = styled.TextInput.attrs<TextInputProps>(({ theme }) => ({
@@ -25,7 +29,7 @@ const StyledInput = styled.TextInput.attrs<TextInputProps>(({ theme }) => ({
 `;
 
 
-const TextInput = ({stroke=true, fontSize=16, placeholder, value, onChangeText, inputRef, height=100}: TextInputProps ) => {
+const TextInput = ({stroke=true, fontSize=16, placeholder, value, onChangeText, ref, height=100, returnKeyType, onSubmitEditing, blurOnSubmit, multiline=true}: TextInputProps ) => {
     return (
         <StyledInput
             stroke={stroke}
@@ -33,9 +37,13 @@ const TextInput = ({stroke=true, fontSize=16, placeholder, value, onChangeText, 
             placeholder={placeholder}
             value={value}
             onChangeText={onChangeText}
-            multiline={true}
-            ref={inputRef}
+            multiline={multiline}
+            ref={ref}
             height={height}
+            returnKeyType={returnKeyType}
+            onSubmitEditing={onSubmitEditing}
+            blurOnSubmit={blurOnSubmit}
+
         />
     );
 };
